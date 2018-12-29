@@ -3,7 +3,7 @@ from urllib import request, error
 import re
 
 regex1 = r'href="(https://news.sina.com.cn/.*?.shtml)"'  # 爬取新浪每个主页上的新闻链接的正则
-regex2 = r'\<p\>\s*(.*?)\</p>'  # 爬取每篇新闻的文章的正则
+regex2 = r'<p>\s*(.*?)</p'  # 爬取每篇新闻的文章的正则
 start_url = 'https://news.sina.com.cn/'
 headers = {
     "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/68.0.3440.15'
