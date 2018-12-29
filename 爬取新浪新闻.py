@@ -2,7 +2,6 @@
 from urllib import request, error
 import re
 
-
 regex1 = r'href="(https://news.sina.com.cn/.*?.shtml)"'  # 爬取新浪每个主页上的新闻链接的正则
 regex2 = r'\<p\>\s*(.*?)\</p>'  # 爬取每篇新闻的文章的正则
 start_url = 'https://news.sina.com.cn/'
@@ -11,7 +10,7 @@ headers = {
                   ' Safari/537.36'
 }  # 伪装自己为谷歌浏览器
 data_1 = request.urlopen(start_url)
-html_1 = data_1.read().decode('utf-8')  # 爬取出
+html_1 = data_1.read().decode('utf-8')  # 爬取出主页
 regex_url = re.compile(regex1)
 regex_url_result = regex_url.findall(html_1)  # 筛选出新闻的链接，只为一个list
 
@@ -27,6 +26,7 @@ for i in range(len(regex_url_result)):
             for j in range(len(regex_url_article_result)):
                 regex_url_article_result[j] = regex_url_article_result[j].replace('<strong>', '')
                 regex_url_article_result[j] = regex_url_article_result[j].replace('</strong>', '')
+                # 若不去掉，结果会有<strong></strong>
                 f.write(regex_url_article_result[j])
                 f.write('\n')
             f.write('\n\n\n')
